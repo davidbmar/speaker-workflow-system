@@ -22,6 +22,7 @@ Searchable index of all design decisions. Each ADR documents the **context**, **
 | [008](008-column-layout-view-toggle.md) | Column layout with view toggling | accepted | `[ui]` `[layout]` | 2025-02-14 |
 | [009](009-vanilla-ts-no-framework.md) | Vanilla TypeScript + Vite, no framework | accepted | `[architecture]` `[tooling]` | 2025-02-14 |
 | [010](010-bidirectional-graph-code-highlighting.md) | Bidirectional highlighting between graph and code | accepted | `[ui]` `[readability]` | 2025-02-14 |
+| [011](011-graph-aware-workflow-map.md) | Graph-aware map with link nodes and tree connectors | accepted | `[ui]` `[layout]` `[readability]` | 2026-02-14 |
 
 ## Tag Reference
 

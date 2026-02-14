@@ -110,6 +110,14 @@ header h1 {
   align-items: center;
   gap: 0;
   flex: 1;
+  position: relative;
+}
+
+.link-connectors {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
 }
 
 .wf-node {
@@ -177,6 +185,29 @@ header h1 {
   border-style: dashed;
 }
 
+.link-target {
+  font-size: 9px;
+  color: #5a6a7e;
+  text-align: center;
+  padding: 2px 0;
+  cursor: pointer;
+  transition: color 0.2s;
+  letter-spacing: 0.5px;
+}
+
+.link-target:hover {
+  color: #4a9eff;
+}
+
+.wf-node.flash {
+  animation: node-flash 0.6s ease-out;
+}
+
+@keyframes node-flash {
+  0%   { border-color: #4a9eff; box-shadow: 0 0 16px #4a9eff40; }
+  100% { border-color: #2a2a3e; box-shadow: none; }
+}
+
 .wf-arrow {
   display: flex;
   flex-direction: column;
@@ -204,6 +235,15 @@ header h1 {
   line-height: 1;
 }
 
+/* ── Branch tree connectors ── */
+
+.branch-vline {
+  width: 1px;
+  height: 12px;
+  background: #2a2a3e;
+  align-self: center;
+}
+
 .wf-branch {
   display: flex;
   gap: 16px;
@@ -211,6 +251,19 @@ header h1 {
   justify-content: center;
   width: 100%;
   padding: 0 4px;
+  padding-top: 12px;
+  position: relative;
+}
+
+/* Horizontal bar spanning from center of first arm to center of last arm */
+.wf-branch::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  height: 1px;
+  background: #2a2a3e;
+  left: calc(50% / var(--arm-count, 2));
+  right: calc(50% / var(--arm-count, 2));
 }
 
 .wf-branch-arm {
@@ -220,6 +273,18 @@ header h1 {
   gap: 0;
   flex: 1;
   min-width: 0;
+  position: relative;
+}
+
+/* Vertical stub from horizontal bar down into each arm */
+.wf-branch-arm::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 1px;
+  height: 12px;
+  background: #2a2a3e;
 }
 
 .wf-branch .wf-arrow .arrow-label {

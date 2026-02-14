@@ -17,6 +17,8 @@ The workflow system powers **stateful multi-turn conversations** — sequences w
 
 The visual editor lets you:
 - See the entire flow as an interactive graph (left) and color-coded pseudocode (right)
+- **Graph-aware rendering** — shared states appear once with `↗` link targets and dotted SVG connectors instead of duplicated subtrees
+- **Tree connector lines** — branch arms stay visually connected at any panel width
 - Click any node or arrow to highlight the matching code
 - Edit states, transitions, messages, and keywords inline
 - Add new states via a visual preview graph
@@ -33,6 +35,10 @@ The visual editor lets you:
 |:---:|:---:|
 | ![Add State](docs/screenshots/add-state-editor.png) | ![Interact](docs/screenshots/interact-mode.png) |
 
+| Graph-Aware Map | Tree Connectors (wide) |
+|:---:|:---:|
+| ![Graph-Aware Map](docs/screenshots/graph-aware-map.png) | ![Tree Connectors](docs/screenshots/graph-aware-map-wide.png) |
+
 ## Project Structure
 
 ```
@@ -40,7 +46,9 @@ The visual editor lets you:
 │   ├── workflow.ts          # Engine — state machine, handlers, template resolution
 │   ├── workflowHandlers.ts  # Named handlers (accumulate, bullets)
 │   ├── intentClassifier.ts  # Keyword-based intent classification
-│   ├── demo.ts              # UI — workflow map, editors, interaction panel
+│   ├── workflowMap.ts       # Graph-aware workflow map with link nodes + SVG connectors
+│   ├── stateHighlight.ts    # Runtime state highlighting (active, visited, exit)
+│   ├── demo.ts              # UI — editors, interaction panel, layout
 │   ├── codeView.ts          # Pseudocode generator with bidirectional highlighting
 │   └── editorUtils.ts       # Parse/serialize helpers for editors
 ├── data/
@@ -54,7 +62,7 @@ The visual editor lets you:
 ├── CLAUDE.md                # Instructions for Claude Code
 └── docs/decisions/          # Architecture Decision Records (ADRs)
     ├── 000-INDEX.md         # Searchable index with tags
-    ├── 001–010              # 10 decisions covering engine, UI, data format
+    ├── 001–011              # 11 decisions covering engine, UI, data format
 ```
 
 ## Commands
@@ -114,6 +122,7 @@ All significant design choices are documented as [Architecture Decision Records]
 - [ADR-002](docs/decisions/002-declarative-state-machine.md) — Declarative state machine over hand-coded FSMs
 - [ADR-006](docs/decisions/006-linked-pseudocode-view.md) — Linked pseudocode view over raw JSON or builder DSL
 - [ADR-010](docs/decisions/010-bidirectional-graph-code-highlighting.md) — Bidirectional graph ↔ code highlighting
+- [ADR-011](docs/decisions/011-graph-aware-workflow-map.md) — Graph-aware map with link nodes and tree connectors
 
 ## Tech Stack
 
